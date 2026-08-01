@@ -1,0 +1,111 @@
+{
+  "expo": {
+    "name": "Vitals",
+    "slug": "vitals",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "vitals",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0A0D12",
+    "newArchEnabled": true,
+    "ios": {
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.vitals.tracker",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSSupportsLiveActivities": true,
+        "NSSupportsLiveActivitiesFrequentUpdates": true,
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.vitals.tracker",
+      "adaptiveIcon": {
+        "backgroundColor": "#0A0D12",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "output": "server",
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0A0D12",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 76,
+          "dark": {
+            "backgroundColor": "#0A0D12"
+          }
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Vitals uses your camera to photograph meals and estimate their calories instantly.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false,
+          "barcodeScannerEnabled": false
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/notification-icon.png",
+          "color": "#7DD956",
+          "defaultChannel": "default",
+          "enableBackgroundRemoteNotifications": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Vitals uses your photo library so you can log meals from saved pictures."
+        }
+      ],
+      "@clerk/expo",
+      "expo-secure-store",
+      [
+        "apple-health",
+        {
+          "healthSharePermission": "Vitals reads your health data to show burned calories alongside what you eat.",
+          "healthUpdatePermission": "Vitals writes the meals you log to Apple Health.",
+          "backgroundDelivery": false
+        }
+      ],
+      [
+        "expo-widgets",
+        {
+          "enablePushNotifications": true,
+          "widgets": [
+            {
+              "name": "CalorieWidget",
+              "displayName": "Calorie Progress",
+              "description": "See today's calorie progress at a glance.",
+              "supportedFamilies": ["systemSmall", "systemMedium", "accessoryCircular"]
+            },
+            {
+              "name": "CalorieActivity",
+              "displayName": "Daily Progress",
+              "description": "Live progress towards today's calorie goal.",
+              "supportedFamilies": ["systemMedium"]
+            }
+          ]
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
