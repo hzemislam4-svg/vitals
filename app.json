@@ -14,8 +14,6 @@
       "bundleIdentifier": "com.vitals.tracker",
       "supportsTablet": true,
       "infoPlist": {
-        "NSSupportsLiveActivities": true,
-        "NSSupportsLiveActivitiesFrequentUpdates": true,
         "ITSAppUsesNonExemptEncryption": false
       }
     },
@@ -80,26 +78,6 @@
           "healthSharePermission": "Vitals reads your health data to show burned calories alongside what you eat.",
           "healthUpdatePermission": "Vitals writes the meals you log to Apple Health.",
           "backgroundDelivery": false
-        }
-      ],
-      [
-        "expo-widgets",
-        {
-          "enablePushNotifications": true,
-          "widgets": [
-            {
-              "name": "CalorieWidget",
-              "displayName": "Calorie Progress",
-              "description": "See today's calorie progress at a glance.",
-              "supportedFamilies": ["systemSmall", "systemMedium", "accessoryCircular"]
-            },
-            {
-              "name": "CalorieActivity",
-              "displayName": "Daily Progress",
-              "description": "Live progress towards today's calorie goal.",
-              "supportedFamilies": ["systemMedium"]
-            }
-          ]
         }
       ]
     ],
