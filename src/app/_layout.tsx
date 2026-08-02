@@ -7,7 +7,7 @@ import { ActivityIndicator, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { palette } from '@/constants/theme';
-import { clerkKey, devSignedIn, hasClerk } from '@/lib/auth';
+import { clerkKey, hasClerk } from '@/lib/auth';
 import { configureNotificationHandler, syncNotifications } from '@/lib/notifications';
 import { initPurchases } from '@/lib/pro';
 
@@ -30,7 +30,9 @@ const tokenCache = {
 
 export default function RootLayout() {
   useEffect(() => {
-    configureNotificationHandler();
+    try {
+      configureNotificationHandler();
+    } catch {}
     syncNotifications().catch(() => {});
     initPurchases().catch(() => {});
   }, []);
@@ -44,17 +46,25 @@ export default function RootLayout() {
             <RootNavigator />
           </ClerkProvider>
         ) : (
-          <RootNavigator />
+          <DemoNavigator />
         )}
       </ThemeProvider>
     </SafeAreaProvider>
   );
 }
 
+function DemoNavigator() {
+  return (
+    <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: palette.bg } }}>
+      <Stack.Screen name="(app)" />
+    </Stack>
+  );
+}
+
 function RootNavigator() {
   const auth = useAuth();
-  const isLoaded = devSignedIn ? true : auth.isLoaded;
-  const signedIn = devSignedIn ? true : !!auth.userId;
+  const isLoaded = auth.isLoaded;
+  const signedIn = !!auth.userId;
 
   if (!isLoaded) {
     return (
